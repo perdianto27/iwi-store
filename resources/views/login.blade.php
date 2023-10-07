@@ -19,17 +19,18 @@
       </div>
       <div class="form">
       <h2>Create an account</h2>
-      <form>
-        <input type="text" name="username" placeholder="Username" required=" ">
-        <input type="password" name="password" placeholder="Password" required=" ">
+      <form id="form-register">
+        <input type="text" name="name" placeholder="Name" required=" ">
         <input type="email" name="email" placeholder="Email Address" required=" ">
-        <input type="text" name="phone" placeholder="Phone Number" required=" ">
+        <input type="password" name="password" placeholder="Password" required=" ">
+        <input type="password" name="c_password" placeholder="Confirmation Password" required=" ">
         <button type="button" class="btn btn-primary" onclick="register()">Register</button>
       </form>
       </div>
       <!-- <div class="cta"><a href="#">Forgot your password?</a></div> -->
     </div>
   <!-- </div> -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
     $('.toggle').click(function(){
       // Switches the Icon
@@ -66,6 +67,28 @@
         }
       });
     }
+
+    function register(){
+      $.ajax({
+        url: '{{ route("api-register") }}',
+        method: 'POST',
+        data: $('#form-register').serialize(),
+        dataType: 'JSON',
+        success: function(response) {
+          if(response.data.token){
+            Swal.fire({
+              icon: "success",
+              title: "Berhasil",
+              text: response.message,
+            })
+          }
+        },
+        error: function(xhr, status, error) {
+            // Handle any errors that occur during the AJAX request
+            console.error(xhr.responseText);
+        }
+      });
+    }    
   </script>
 </div>
 <!-- //login -->

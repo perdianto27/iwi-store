@@ -1,3 +1,6 @@
+<p align="center" ><img height="400px" src="https://github.com/perdianto27/iwi-store/blob/master/ss.png"> </p>
+<br>
+
 # Tech :
 - PHP 7
 - Laravel 7 

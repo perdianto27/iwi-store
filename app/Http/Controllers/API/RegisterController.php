@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Validator;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
 
 class RegisterController extends BaseController
 {
@@ -36,9 +37,12 @@ class RegisterController extends BaseController
   public function login(Request $request)
   {
     if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
-        $user = Auth::user(); 
+        $user = Auth::user();
+        $serializedUser = serialize($user);
+        Session::put('user', $serializedUser);  
         $success['token'] =  $user->createToken('MyApp')->accessToken; 
         $success['name'] =  $user->name;
+        $success['role_id'] = $user->role_id;
         return $this->sendResponse($success, 'User login successfully.');
     } 
     else{ 

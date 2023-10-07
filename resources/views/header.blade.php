@@ -22,7 +22,7 @@
 		<div class="w3l_header_right">
 			<ul>
 				<?php
-				if(@$_SESSION['is_login']==TRUE){
+				if(session()->has('email')){
 				?>
 				<li class="dropdown profile_details_drop">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=strtoupper($_SESSION['username']);?><span class="caret"></span></a>
@@ -45,7 +45,7 @@
 
 							<ul class="dropdown-menu drp-mnu">
 								<li><a href="{{ route('login') }}">Login</a></li> 
-								<li><a href="#">Sign Up</a></li>
+								<li><a href="{{ route('login') }}">Sign Up</a></li>
 							</ul>
 						</div>                  
 					</div>	
@@ -79,7 +79,7 @@
 	<div class="logo_products">
 		<div class="container">
 			<div class="w3ls_logo_products_left">
-				<h1><a href="#"><span>Tomo</span> Store</a></h1>
+				<h1><a href="#"><span>IWI</span> Store</a></h1>
 			</div>
 			<div class="w3ls_logo_products_left1">
 				<ul class="special_items">
@@ -92,7 +92,7 @@
 			<div class="w3ls_logo_products_left1">
 				<ul class="phone_email">
 					<li><i class="fa fa-phone" aria-hidden="true"></i>(+62) 8980 7646 616</li>
-					<li><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailto:perdi_27@yahoo.co.id">perdi_27@yahoo.co.id</a></li>
+					<li><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailto:perdi_27@yahoo.co.id">{{ session('user') }}</a></li>
 				</ul>
 			</div>
 			<div class="clearfix"> </div>

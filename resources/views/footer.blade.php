@@ -153,31 +153,29 @@ $(document).ready(function(){
 <script>
 		paypal.minicart.render();
 
-		
+      var items = paypal.minicart.cart.items();
+      console.log(items);
+      var len = items.length;
+      var list="";
+      var discount=0;
+      var biglist="";
+      for(i=0;i<len;i++){
+        list= list+"<li>"+items[i].get('item_name').charAt(0).toUpperCase() + items[i].get('item_name').slice(1)+" <i>-</i> <span>$ "+items[i].get('amount')*items[i].get('quantity')+" </span></li>";
+        discount+=items[i].get('discount_amount')*items[i].get('quantity');
 
-       	var items = paypal.minicart.cart.items();
-       	console.log(items);
-       	var len = items.length;
-       	var list="";
-       	var discount=0;
-       	var biglist="";
-       	for(i=0;i<len;i++){
-       		list= list+"<li>"+items[i].get('item_name').charAt(0).toUpperCase() + items[i].get('item_name').slice(1)+" <i>-</i> <span>$ "+items[i].get('amount')*items[i].get('quantity')+" </span></li>";
-       		discount+=items[i].get('discount_amount')*items[i].get('quantity');
+        biglist=biglist+'<tr class="rem'+items[i].get('idx')+'"><td class="invert">'+(i+1)+'</td><td class="invert-image"><a href="{{ url('') }}"><img src="'+items[i].get('pic')+'" alt=" " class="img-responsive"></a></td><td class="invert"><div class="quantity"> <div class="quantity-select"><div class="entry value-minus">&nbsp;</div><div class="entry value"><span>'+items[i].get('quantity')+'</span></div><div class="entry value-plus active">&nbsp;</div></div></div></td><td class="invert">'+items[i].get('item_name')+'</td><td class="invert">$'+items[i].get('amount')*items[i].get('quantity')+'</td><td class="invert">'+items[i].get('discount_amount')*items[i].get('quantity')+'</td><td class="invert"><div class="rem"><div class="close1" id="'+items[i].get('idx')+'"> </div></div></td></tr>';
+      }
+      $('.listitem').html(list);
+      $('.biglistitem').html('<table class="timetable_sub"><thead><tr><th>SL No.</th><th>Product</th><th>Quality</th><th>Product Name</th><th>Price</th><th>Discount</th><th>Remove</th></tr></thead><tbody>'+biglist+'</tbody></table>');
+      $('.totaldisc').html(discount);
 
-       		biglist=biglist+'<tr class="rem'+items[i].get('idx')+'"><td class="invert">'+(i+1)+'</td><td class="invert-image"><a href="{{ url('') }}"><img src="'+items[i].get('pic')+'" alt=" " class="img-responsive"></a></td><td class="invert"><div class="quantity"> <div class="quantity-select"><div class="entry value-minus">&nbsp;</div><div class="entry value"><span>'+items[i].get('quantity')+'</span></div><div class="entry value-plus active">&nbsp;</div></div></div></td><td class="invert">'+items[i].get('item_name')+'</td><td class="invert">$'+items[i].get('amount')*items[i].get('quantity')+'</td><td class="invert">'+items[i].get('discount_amount')*items[i].get('quantity')+'</td><td class="invert"><div class="rem"><div class="close1" id="'+items[i].get('idx')+'"> </div></div></td></tr>';
-       	}
-       	$('.listitem').html(list);
-       	$('.biglistitem').html('<table class="timetable_sub"><thead><tr><th>SL No.</th><th>Product</th><th>Quality</th><th>Product Name</th><th>Price</th><th>Discount</th><th>Remove</th></tr></thead><tbody>'+biglist+'</tbody></table>');
-       	$('.totaldisc').html(discount);
+      var cartTotal = paypal.minicart.cart.subtotal();
+      $('.totalCart').html('$ '+cartTotal.toFixed(2));
 
-       	var cartTotal = paypal.minicart.cart.subtotal();
-       	$('.totalCart').html('$ '+cartTotal.toFixed(2));
-
-       	$('.jmlitem').html(len);
+      $('.jmlitem').html(len);
 
 //buat lihat data cart di console
-       	paypal.minicart.cart.items().forEach(
+      paypal.minicart.cart.items().forEach(
 		  console.log.bind(console)
 		 
 		);

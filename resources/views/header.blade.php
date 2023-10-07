@@ -44,7 +44,7 @@
 						<div class="w3ls_vegetables">
 
 							<ul class="dropdown-menu drp-mnu">
-								<li><a href="#">Login</a></li> 
+								<li><a href="{{ route('login') }}">Login</a></li> 
 								<li><a href="#">Sign Up</a></li>
 							</ul>
 						</div>                  

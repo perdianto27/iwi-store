@@ -154,7 +154,7 @@ $(document).ready(function(){
 		paypal.minicart.render();
 
       var items = paypal.minicart.cart.items();
-      console.log(items);
+      // console.log(items);
       var len = items.length;
       var list="";
       var discount=0;
@@ -177,7 +177,6 @@ $(document).ready(function(){
 //buat lihat data cart di console
       paypal.minicart.cart.items().forEach(
 		  console.log.bind(console)
-		 
 		);
 
 		paypal.minicart.cart.on('checkout', function (evt) {

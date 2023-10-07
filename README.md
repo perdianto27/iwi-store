@@ -1,4 +1,4 @@
-<p align="center" ><img height="400px" src="https://github.com/perdianto27/iwi-store/blob/master/ss.png"> </p>
+<p align="center" ><img height="400px" src="https://github.com/perdianto27/iwi-store/blob/master/public/images/home.jpg"> </p>
 <br>
 
 # Tech :
